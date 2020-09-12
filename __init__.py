@@ -2,21 +2,21 @@ import discord
 import os
 import sys
 
-local_dir = os.path.dirname(os.path.realpath(__file__))
-sys.path.append('%s/modules' % local_dir)
-sys.path.append('%s/classes' % local_dir)
-
 ## Custom modules
-import channel_messages
+from modules import channel_messages
+from modules import perfect_update
 
 ## Custom classes
-from discord_data import DiscordJsonData
+from classes.discord_data import DiscordJsonData
+from classes.perfect_data import PerfectData
 
 config_file = '%s/etc/discord.json' % os.path.dirname(os.path.realpath(__file__))
+perfect_file = '%s/etc/perfect.json' % os.path.dirname(os.path.realpath(__file__))
 
 ## Objects
-discord_guild = DiscordJsonData(config_file)
 client = discord.Client()
+discord_guild = DiscordJsonData(config_file)
+perfect_status = PerfectData(perfect_file)
 
 @client.event
 async def on_ready():
@@ -31,6 +31,6 @@ async def on_ready():
         f'#########################################################\n'
     )
 
-channel_messages.remember_perfect(client)
-
+channel_messages.remember_perfect(client, perfect_status)
+perfect_update.save_offline(client, perfect_status)
 client.run(discord_guild.token())
