@@ -10,3 +10,13 @@ Crear directorio etc/ con archivo **discord.json**. Debe contener los valores de
     "guild": "nombre de server"
 }
 ```
+
+Además, crear archivo **perfect.json** con la siguiente estructura.
+
+```json
+{
+    "id": "126711017236332544", 
+    "nickname": "Perfect", 
+    "offline_date": "09/11/20 23:17:10"
+}
+```
