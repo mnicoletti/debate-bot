@@ -11,6 +11,7 @@ Se detalla la instalación, configuración y funciones de
 * [Uso](#uso)
   * [Linea de comandos](#linea-de-comandos)  
   * [SystemD](#systemd)  
+* [Changelog](#changelog)  
 
 # Dependencias
   * [discord.py](https://discordpy.readthedocs.io/en/latest/)
