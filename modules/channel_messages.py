@@ -22,11 +22,11 @@ def remember_perfect(discord_client: discord.Client, perfect_status: perfect_dat
         output_msg = random.choice(lst_remember_msg)
 
         if str(perfect_guild_member.status) != "offline":
-            if perfect_guild_member.activity.name == None:
+            if perfect_guild_member.activity == None:
                 lst_online_msg = [
                     "Pará, %s está online. Te debe estar ignorando." % perfect_guild_member.mention,
                     "Estás ahí, %s? Te buscan." % perfect_guild_member.mention,
-                    "Se olvidó Discord abierto, pero %s está online." % perfect_guild_member,
+                    "Se olvidó Discord abierto, pero %s está online." % perfect_guild_member.mention,
                     "Ahí lo tenés a %s." % perfect_guild_member.mention
                 ]
             elif perfect_guild_member.activity.name != None:
@@ -57,6 +57,6 @@ def remember_perfect(discord_client: discord.Client, perfect_status: perfect_dat
         if message.author == discord_client.user:
             return
 
-        if re.search(r'(^|\s)(perfect)(\s|\n|$)', message.content, re.IGNORECASE):
+        if re.search(r'(^|\s)(perfect)(\s|\n|\\?|\.|\,||$)', message.content, re.IGNORECASE):
             await message.channel.send(output_msg)
             return True
