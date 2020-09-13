@@ -9,7 +9,7 @@ Se detalla la instalación, configuración y funciones de
   * [Conectarse como bot](#conectarse-como-bot)  
   * [Persistir datos de Perfect](#persistir-datos-de-perfect)  
 * [Uso](#uso)
-  * [Linea de comando](#linea-de-comando)  
+  * [Linea de comandos](#linea-de-comandos)  
   * [SystemD](#systemd)  
 
 # Dependencias
