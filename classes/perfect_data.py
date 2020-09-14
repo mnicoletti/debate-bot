@@ -1,11 +1,21 @@
 import json
 from datetime import datetime
+import logging
+
+log = logging.getLogger(__name__)
 
 class PerfectData:
     def __init__(self, json_config_file):
         self.__config_file = json_config_file
-        with open(self.__config_file) as config_file:
-            config = json.load(config_file)
+        try:
+            with open(self.__config_file) as config_file:
+                config = json.load(config_file)
+        except IOError as er:
+            log.critical("I/O Error({0}): {1}".format(er.errno, er.strerror))
+        except FileNotFoundError as er:
+            log.critical("File not found: {}".format(er))
+        except Exception as er:
+            log.critical("Unexpected error: {}".format(er))
         self.__id = config["id"]
         self.__nickname = config["nickname"]
         self.__full_id = "%s#%s" % (self.__nickname, str(self.__id))
@@ -26,14 +36,29 @@ class PerfectData:
     def update_offline_date(self):
         date_now = datetime.now().strftime("%x %X")
 
-        with open(self.__config_file, "r") as config_file:
-            config = json.load(config_file)
+        try:
+            with open(self.__config_file, "r") as config_file:
+                config = json.load(config_file)
+        except IOError as er:
+            log.critical("I/O Error({0}): {1}".format(er.errno, er.strerror))
+        except FileNotFoundError as er:
+            log.critical("File not found: {}".format(er))
+        except Exception as er:
+            log.critical("Unexpected error: {}".format(er))
         config["offline_date"] = date_now
 
-        with open(self.__config_file, "w") as config_file:
-            json.dump(config, config_file)
+        try:
+            with open(self.__config_file, "w") as config_file:
+                json.dump(config, config_file)
+        except IOError as er:
+            log.critical("I/O Error({0}): {1}".format(er.errno, er.strerror))
+        except FileNotFoundError as er:
+            log.critical("File not found: {}".format(er))
+        except Exception as er:
+            log.critical("Unexpected error: {}".format(er))
 
         self.__offline_date = config["offline_date"]
+        log.info("Perfect se puso offline.")
         return True
     
     def calculate_last_offline(self) -> str:

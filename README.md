@@ -40,7 +40,9 @@ Crear directorio etc/ con archivo **discord.json**. Debe contener los valores de
 ```json
 {
     "token": "valor de token",
-    "guild": "nombre de server"
+    "guild": "nombre de server",
+    "log_path": "/var/log/debate-bot",
+    "log_file": "debate-bot"
 }
 ```
 
