@@ -4,6 +4,8 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [v1.1.0] - 2020-09-14
 ### Added
 * Logging
 * Registro de excepciones en operaciones criticas.
