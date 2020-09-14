@@ -21,8 +21,8 @@ discord_guild = DiscordBotJsonData(config_file)
 perfect_status = PerfectData(perfect_file)
 
 ## Logger setup
-file_management.create_dir(discord_guild.log_path)
-log_file_path="%s/%s.log" % (discord_guild.log_path, discord_guild.log_file)
+file_management.create_dir(discord_guild.log_path())
+log_file_path="%s/%s.log" % (discord_guild.log_path(), discord_guild.log_file())
 logging.basicConfig(filename=log_file_path, filemode='w', format='%(asctime)s:%(name)s:%(levelname)s:%(message)s')
 logging.getLogger().setLevel(logging.INFO)
 
