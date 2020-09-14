@@ -14,10 +14,15 @@ class DiscordBotJsonData():
             log.critical("File not found: {}".format(er))
         except Exception as er:
             log.critical("Unexpected error: {}".format(er))
-        self.__token = config["token"]
-        self.__guild_name = config["guild"]
-        self.__log_path = config["log_path"]
-        self.__log_file = config["log_file"]
+        try:
+            self.__token = config["token"]
+            self.__guild_name = config["guild"]
+            self.__log_path = config["log_path"]
+            self.__log_file = config["log_file"]
+        except KeyError as err:
+            log.critical("JSON file key not present: {}".format(err))
+        except Exception as err:
+            log.critical("Unexpected error ocurred: {}".format(err))
     
     def token(self):
         return self.__token
