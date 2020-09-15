@@ -17,7 +17,7 @@ def remember_perfect(discord_client: discord.Client, perfect_status: perfect_dat
         lst_remember_msg = [
             "Te acordás de Perfect, %s?" % msg_author,
             "Do you remember about Perfect, %s?" % msg_author,
-            "Alguno se acuerda de Perfect, @everyone?",
+            "Alguno se acuerda de Perfect? %s lo anda buscando." % msg_author,
             "Che, te acordás de Perfect?",
             "Che, te acordás de Perfect, %s?" % msg_author
         ]
