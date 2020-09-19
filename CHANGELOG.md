@@ -5,6 +5,14 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
 
 ## [Unreleased]
 
+## [v1.1.1] - 2020-09-19
+### Added
+* Si se menciona a @Perfect ahora se activa remember_perfect
+
+### Fixed
+* Solucionado un problema donde la palabra perfecto llamaba al remember_perfect.
+* Eliminado un "|" extra en una expresión regular.
+
 ## [v1.1.0] - 2020-09-14
 ### Added
 * Logging

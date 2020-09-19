@@ -64,7 +64,7 @@ def remember_perfect(discord_client: discord.Client, perfect_status: perfect_dat
         if message.author == discord_client.user:
             return
 
-        if re.search(r'(^|\s)(perfect)(\s|\n|\\?|\.|\,||$)', message.content, re.IGNORECASE):
-            log.info("Perfect mention: {}".format(msg_author))
+        if re.search(r'(^|\s|@)(perfect)(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE):
+            log.info("Perfect mention: {}".format(message.author.name))
             await message.channel.send(output_msg)
             return True
