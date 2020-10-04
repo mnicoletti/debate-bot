@@ -40,6 +40,13 @@ def remember_perfect(discord_client: discord.Client, perfect_status: perfect_dat
                         "Chequea la lista de usuarios, %s está jugando %s." % (perfect_guild_member.mention, perfect_guild_member.activity.name),
                         "Te buscan %s, largá el %s." % (perfect_guild_member.mention, perfect_guild_member.activity.name)
                     ]
+                    if perfect_guild_member.activity.name in ["Apex", "apex", "Apex Legends"]:
+                        apex_online_msg = [
+                            "%s se fue a la salida de Chankanab a repartir golpes." % perfect_guild_member.mention,
+                            "%s agarró la Devotion desde la casa y Tik Tak Tuk Pik Tak Chick Plack Clip Clap" % perfect_guild_member.mention,
+                            "%s? Tik Tak Tuk Pik Tak Chick Plack Clip Clap y abajo." % perfect_guild_member.mention
+                        ]
+                        lst_online_msg.extend(apex_online_msg)
                 output_msg += "\n%s" % random.choice(lst_online_msg)
             elif str(perfect_guild_member.status) == "offline":
                 offline_time = perfect_status.calculate_last_offline()
