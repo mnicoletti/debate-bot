@@ -75,3 +75,26 @@ def remember_perfect(discord_client: discord.Client, perfect_status: perfect_dat
             log.info("Perfect mention: {}".format(message.author.name))
             await message.channel.send(output_msg)
             return True
+
+def this_is_boca(discord_client: discord.Client):
+    @discord_client.event
+    async def on_message(message):
+        boquita = 'BOCA'.replace('O', 'O'*random.randrange(1,15),1).replace('A','A'*random.randrange(1,15),1)
+        boquiten = 'BOKE'.replace('O', 'O'*random.randrange(1,15),1).replace('E','E'*random.randrange(1,15),1)
+        random_boke = random.choice([boquita,boquiten])
+
+        lst_boca_msg = [
+            "El mas grande, papá, %s!" % random_boke,
+            random_boke,
+            "ESTO ES %s" % boquita
+        ]
+
+        output_message = random.choice(lst_boca_msg)
+
+        if message.author == discord_client.user:
+            return
+        
+        if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE):
+            log.info("Boquita mention: {}".format(message.author.name))
+            await message.channel.send(output_message)
+            return True
