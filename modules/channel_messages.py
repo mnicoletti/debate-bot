@@ -94,7 +94,7 @@ def this_is_boca(discord_client: discord.Client):
         if message.author == discord_client.user:
             return
         
-        if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE):
+        if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE) or re.search('boquita', message.content, re.IGNORECASE):
             log.info("Boquita mention: {}".format(message.author.name))
             await message.channel.send(output_message)
             return True
