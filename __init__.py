@@ -42,5 +42,6 @@ async def on_ready():
     logging.info(startup_message)
 
 channel_messages.remember_perfect(client, perfect_status)
+channel_messages.this_is_boca(client)
 perfect_update.save_offline(client, perfect_status)
 client.run(discord_guild.token())
