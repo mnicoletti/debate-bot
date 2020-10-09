@@ -68,7 +68,7 @@ class PerfectData:
             log.critical("Unexpected error: {}".format(er))
 
         try:
-            self.__offline_date = config["offline_date"]
+            self.__offline_date = datetime.strptime(config["offline_date"], "%x %X")
         except KeyError as err:
             log.critical("JSON file key not present: {}".format(err))
         except Exception as err:
@@ -78,7 +78,7 @@ class PerfectData:
     
     def calculate_last_offline(self) -> str:
         date_now = datetime.now()
-        date_then = datetime.strptime(self.__offline_date, "%x %X")
+        date_then = self.__offline_date
         date_delta = date_now - date_then
         date_delta_seconds = date_delta.total_seconds()
         days, seconds = divmod(date_delta_seconds, 86400)
