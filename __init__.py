@@ -41,7 +41,11 @@ async def on_ready():
     print('{}'.format(startup_message))
     logging.info(startup_message)
 
-channel_messages.remember_perfect(client, perfect_status)
-channel_messages.this_is_boca(client)
+#### channel message actions
+@discord_client.event
+async def on_message(message):
+    output_msg = channel_messages.remember_perfect(client, perfect_status, message)
+    await message.channel.send(output_msg)
+
 perfect_update.save_offline(client, perfect_status)
 client.run(discord_guild.token())
