@@ -42,13 +42,27 @@ async def on_ready():
     print('{}'.format(startup_message))
     logging.info(startup_message)
 
-#### channel message actions
+#### Channel message actions
+########
 @client.event
 async def on_message(message):
-    output_msg = channel_messages.remember_perfect(client, perfect_status, message)
-    await message.channel.send(output_msg)
-    output_msg = channel_messages.this_is_boca(client, message)
-    await message.channel.send(output_msg)
+    output_msg = []
+    perfect_msg = channel_messages.remember_perfect(client, perfect_status, message)
+    boke_msg = channel_messages.this_is_boca(client, message)
 
-perfect_update.save_offline(client, perfect_status)
+    if perfect_msg:
+        output_msg.append(perfect_msg)
+    if boke_msg:
+        output_msg.append(boke_msg)
+
+    if len(output_msg) > 0:
+        output_msg = '\n'.join(map(str,output_msg))
+        await message.channel.send(output_msg)
+
+#### Member update actions
+########
+@discord_client.event
+async def on_member_update(before, after):
+    perfect_update.save_offline(client, perfect_status, before, after)
+
 client.run(discord_guild.token())
