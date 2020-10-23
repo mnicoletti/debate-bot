@@ -7,6 +7,7 @@ import logging
 from modules import channel_messages
 from modules import perfect_update
 from modules import file_management
+from modules import helper
 
 ## Custom classes
 from classes.discord_data import DiscordBotJsonData
@@ -23,7 +24,7 @@ perfect_status = PerfectData(perfect_file)
 ## Logger setup
 file_management.create_dir(discord_guild.log_path())
 log_file_path="%s/%s.log" % (discord_guild.log_path(), discord_guild.log_file())
-logging.basicConfig(filename=log_file_path, filemode='a', format='%(asctime)s:%(name)s:%(levelname)s:%(message)s')
+logging.basicConfig(level=helper.set_logging_level("INFO"), filename=log_file_path, filemode='a', format='%(asctime)s:%(name)s:%(levelname)s:%(message)s')
 logging.getLogger().setLevel(logging.INFO)
 
 @client.event
@@ -42,7 +43,7 @@ async def on_ready():
     logging.info(startup_message)
 
 #### channel message actions
-@discord_client.event
+@client.event
 async def on_message(message):
     output_msg = channel_messages.remember_perfect(client, perfect_status, message)
     await message.channel.send(output_msg)
