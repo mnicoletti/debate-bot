@@ -4,6 +4,13 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+* Se hace un log cuando Perfect se pone online.
+* Se mueven eventos al main, ya que discord.Client no permite multiples instancias de uno.
+* output_msg es ahora una lista.
+
+### Fixed
+* Se re-aplica la función this_is_boca.
 
 ## [v1.2.0] - 2020-10-08
 ### Added
