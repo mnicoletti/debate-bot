@@ -3,6 +3,10 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2020-03-20
+### Fixed
+* Agregados intents para solucionar aplicación de nuevas reglas de Discord API.
+
 ## [v1.3.0] - 2020-11-13
 ### Changed
 * Se hace un log cuando Perfect se pone online.
