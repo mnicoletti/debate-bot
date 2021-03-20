@@ -15,8 +15,13 @@ from classes.perfect_data import PerfectData
 
 config_file = '%s/etc/discord.json' % os.path.dirname(os.path.realpath(__file__))
 
+## Intents Setup
+intents = discord.Intents.default()
+intents.presences = True
+intents.members = True
+
 ## Objects
-client = discord.Client()
+client = discord.Client(intents=intents)
 discord_guild = DiscordBotJsonData(config_file)
 perfect_status = PerfectData(perfect_file)
 
@@ -56,11 +61,11 @@ async def on_message(message):
 
     if len(output_msg) > 0:
         output_msg = '\n'.join(map(str,output_msg))
-        await message.channel.send(output_msg)
+        await message.reply(output_msg)
 
 #### Member update actions
 ########
-@discord_client.event
+@client.event
 async def on_member_update(before, after):
     perfect_update.save_offline(client, perfect_status, before, after)
 
