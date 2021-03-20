@@ -14,7 +14,6 @@ from classes.discord_data import DiscordBotJsonData
 from classes.perfect_data import PerfectData
 
 config_file = '%s/etc/discord.json' % os.path.dirname(os.path.realpath(__file__))
-perfect_file = '%s/etc/perfect.json' % os.path.dirname(os.path.realpath(__file__))
 
 ## Objects
 client = discord.Client()

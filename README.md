@@ -42,7 +42,14 @@ Crear directorio etc/ con archivo **discord.json**. Debe contener los valores de
     "token": "valor de token",
     "guild": "nombre de server",
     "log_path": "/var/log/debate-bot",
-    "log_file": "debate-bot"
+    "log_file": "debate-bot",
+        "mysql": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "debate",
+        "pass": "debate",
+        "database": "debate"
+    }
 }
 ```
 
