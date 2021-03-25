@@ -15,22 +15,10 @@ class DiscordBotJsonData():
         except Exception as er:
             log.critical("Unexpected error: {}".format(er))
         try:
-            self.__mysql_conf = {
-                "host": "",
-                "port": 3306,
-                "user": ""
-                "pass": "",
-                "db_name": ""
-            }
             self.__token = config["token"]
             self.__guild_name = config["guild"]
             self.__log_path = config["log_path"]
             self.__log_file = config["log_file"]
-            self.__mysql_conf["host"] = config["mysql"]["host"]
-            self.__mysql_conf["port"] = config["mysql"]["port"]
-            self.__mysql_conf["user"] = config["mysql"]["user"]
-            self.__mysql_conf["pass"] = config["mysql"]["pass"]
-            self.__mysql_conf["db_name"] = config["mysql"]["db_name"]
         except KeyError as err:
             log.critical("JSON file key not present: {}".format(err))
         except Exception as err:
@@ -47,6 +35,3 @@ class DiscordBotJsonData():
     
     def log_file(self):
         return self.__log_file
-    
-    def mysql_conf(self):
-        return self.__mysql_conf
