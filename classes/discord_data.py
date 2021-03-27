@@ -19,6 +19,7 @@ class DiscordBotJsonData():
             self.__guild_name = config["guild"]
             self.__log_path = config["log_path"]
             self.__log_file = config["log_file"]
+            self.__install_path = config["install_path"]
         except KeyError as err:
             log.critical("JSON file key not present: {}".format(err))
         except Exception as err:
@@ -35,3 +36,6 @@ class DiscordBotJsonData():
     
     def log_file(self):
         return self.__log_file
+    
+    def install_path(self):
+        return self.__install_path
