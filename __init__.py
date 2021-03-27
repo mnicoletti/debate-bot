@@ -2,6 +2,7 @@ import discord
 import os
 import sys
 import logging
+from discord.ext import commands
 
 ## Custom modules
 from modules import channel_messages
@@ -9,12 +10,11 @@ from modules import perfect_update
 from modules import file_management
 from modules import helper
 
+from enums import file_data
+
 ## Custom classes
 from classes.discord_data import DiscordBotJsonData
 from classes.perfect_data import PerfectData
-
-config_file = '%s/etc/discord.json' % os.path.dirname(os.path.realpath(__file__))
-perfect_file = '%s/etc/perfect.json' % os.path.dirname(os.path.realpath(__file__))
 
 ## Intents Setup
 intents = discord.Intents.default()
@@ -22,15 +22,26 @@ intents.presences = True
 intents.members = True
 
 ## Objects
-client = discord.Client(intents=intents)
-discord_guild = DiscordBotJsonData(config_file)
-perfect_status = PerfectData(perfect_file)
+client = commands.Bot(command_prefix=commands.when_mentioned_or("apex!"),
+            activity=discord.Game(name="Apex Legends"),
+            status=discord.Status('dnd'),
+            intents=intents,
+            help_command=None)
+discord_guild = DiscordBotJsonData(str(file_data.ConfigFiles.DISCORD_CONFIG))
+perfect_status = PerfectData(str(file_data.ConfigFiles.DB_CONFIG))
 
 ## Logger setup
 file_management.create_dir(discord_guild.log_path())
-log_file_path="%s/%s.log" % (discord_guild.log_path(), discord_guild.log_file())
+log_file_path="{0}/{1}.log".format(discord_guild.log_path(), discord_guild.log_file())
 logging.basicConfig(level=helper.set_logging_level("INFO"), filename=log_file_path, filemode='a', format='%(asctime)s:%(name)s:%(levelname)s:%(message)s')
 logging.getLogger().setLevel(logging.INFO)
+
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        logging.info("Loading cog: {}".format(filename[:-3]))
+        client.load_extension(f'cogs.{filename[:-3]}')
+    else:
+        logging.info("Unable to load cog: {}".format(filename[:-3]))
 
 @client.event
 async def on_ready():
@@ -63,11 +74,19 @@ async def on_message(message):
     if len(output_msg) > 0:
         output_msg = '\n'.join(map(str,output_msg))
         await message.reply(output_msg)
+    
+    await client.process_commands(message)
 
 #### Member update actions
 ########
 @client.event
 async def on_member_update(before, after):
     perfect_update.save_offline(client, perfect_status, before, after)
+
+#### Commands
+########
+@client.command(name="")
+async def apex_help(ctx):
+    await ctx.message.delete()
 
 client.run(discord_guild.token())
