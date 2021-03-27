@@ -24,7 +24,7 @@ class PerfectData:
             self.__id = dict_result[0]["id"]
             self.__nickname = dict_result[0]["nickname"]
             self.__full_id = "{0}#{1}".format(self.__nickname, self.__id)
-            self.__offline_date = dict_result[0]["offline_date"], "%x %X"
+            self.__offline_date = dict_result[0]["offline_date"]
         except KeyError as err:
             log.critical("Response key not present: {}".format(err))
         except Exception as err:

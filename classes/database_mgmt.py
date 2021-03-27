@@ -42,7 +42,8 @@ class DatabaseManager():
                 password = self.__mysql_conf["pass"],
                 host = self.__mysql_conf["host"],
                 port = self.__mysql_conf["port"],
-                database = self.__mysql_conf["db_name"]
+                database = self.__mysql_conf["db_name"],
+                autocommit = True
             )
         except mariadb.Error as err:
             logging.critical("Unable to connect to MariaDB : {}".format(err))
@@ -98,20 +99,18 @@ class DatabaseManager():
         return
 
     def update_fields(self, map_field, map_where, table, condition="AND"):
-        update_command = "UPDATE {0} SET {1} WHERE {2};"
+        update_command = "UPDATE {0} SET {1}=%s WHERE {2}=%s;"
 
-        map_fields_update = self.__map_update_fields(map_field)
-        map_fields_where = self.__map_where(map_where, condition)
+        update_field_name = map_field[0]["Name"]
+        where_field_name = map_where[0]["Name"]
 
         try:
             self.__connect()
-            self.__cursor = self.__db_conn.cursor(dictionary=True)
-            self.__cursor.execute(update_command.format(table, map_fields_update, map_fields_where))
+            self.__cursor = self.__db_conn.cursor()
+            self.__cursor.execute(update_command.format(table, update_field_name, where_field_name),(map_field[0]["Value"],map_where[0]["Value"]))
             self.__close()
         except mariadb.Error as err:
             logging.critical("Error ocurred when updating database: {}".format(err))
         except Exception as err:
             logging.critical("Unexpected error ocurred while executing UPDATE command: {}".format(err))
             return False
-
-
