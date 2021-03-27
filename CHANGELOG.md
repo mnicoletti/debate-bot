@@ -3,7 +3,13 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0]
+## [2.0.1] - 2020-03-27
+### Fixed
+* Instancia en la cual no se actualizaban datos en una tabla de MariaDB, por falta de autocommit=True.
+* El offline_date de Perfect se obtenía como un str y se calculaba contra un datetime, fue solucionado.
+* Se solucionó un problema de actualización de datos en bases de datos por estar en un formato incorrecto.
+
+## [2.0.0] - 2020-03-27
 ### Added
 * Nueva clase "DatabaseManager" dedicada a hacer de interface entre el bot y una base de datos MariaDB.
 * Creado esquema de base de datos y scripts .sql de instalación.
