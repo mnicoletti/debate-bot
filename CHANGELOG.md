@@ -3,11 +3,21 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0]
+### Added
+* Nueva clase "DatabaseManager" dedicada a hacer de interface entre el bot y una base de datos MariaDB.
+* Creado esquema de base de datos y scripts .sql de instalación.
+* Funciones de consulta a un "mapa" de campos, sin condicionales (SELECT).
+* Nueva clase ApexMaps, dedicada a obtener información sobre los mapas de Apex y su rotación.
+
+### Changed
+* Se arma servicios por "cogs" para formar comandos.
+
 ## [1.3.1] - 2020-03-20
 ### Fixed
 * Agregados intents para solucionar aplicación de nuevas reglas de Discord API.
 
-## [1.3.0]
+## [v1.3.0] - 2020-11-13
 ### Changed
 * Se hace un log cuando Perfect se pone online.
 * Se mueven eventos al main, ya que discord.Client no permite multiples instancias de uno.

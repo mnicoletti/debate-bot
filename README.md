@@ -30,7 +30,11 @@ Instalamos python3 y las dependencias que sean necesarias
 > sudo apt-get update
 > sudo apt-get upgrade
 > sudo apt-get install python3 python3-pip
+> sudo apt-get install libmariadb-dev
 > pip3 install discord
+> pip3 install mariadb
+> pip3 install pycurl
+> pip3 install pytz
 ```
 
 # Configuracion
@@ -42,7 +46,19 @@ Crear directorio etc/ con archivo **discord.json**. Debe contener los valores de
     "token": "valor de token",
     "guild": "nombre de server",
     "log_path": "/var/log/debate-bot",
-    "log_file": "debate-bot"
+    "log_file": "debate-bot",
+}
+```
+
+## Configuración de base de datos
+Crear archivo **db_config.json** con la siguiente estructura.
+```json
+{
+    "host": "localhost",
+    "port": 3306,
+    "user": "debate",
+    "pass": "debate",
+    "database": "debate"
 }
 ```
 

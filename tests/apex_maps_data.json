@@ -1,0 +1,33 @@
+{
+    "map": "Olympus", 
+    "event": None, 
+    "_index": 17, 
+    "times": {
+        "sinceStart": 6058.083333333333, 
+        "nextMap": 1616277600, 
+        "remaining": {
+            "minutes": 1.9166666666669698, 
+            "seconds": 115
+        }
+    }, 
+    "next": [
+        {
+            "map": "Kings Canyon", 
+            "duration": 90, 
+            "start": "2021-03-20T22:00:00+0000", 
+            "timestamp": 1616277600
+        }, 
+        {
+                "map": "Olympus", 
+                "duration": 90, 
+                "start": "2021-03-20T23:30:00+0000", 
+                "timestamp": 1616283000
+        }, 
+        {
+                "map": "Kings Canyon", 
+                "duration": 90, 
+                "start": "2021-03-21T01:00:00+0000", 
+                "timestamp": 1616288400
+        }
+    ]
+}
