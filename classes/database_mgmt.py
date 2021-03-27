@@ -57,18 +57,18 @@ class DatabaseManager():
         except Exception as err:
             logging.critical("Unexpected error occured while closing MariaDB connection: {}".format(err))
 
-    def __map_select_fields(map_fields):
+    def __map_select_fields(self, map_fields):
         return ", ".join(map_fields)
 
-    def __map_update_fields(map_fields):
+    def __map_update_fields(self, map_fields):
         mapper = ", ".join(["{0}=\"{1}\"".format(x["Name"], x["Value"]) for x in map_fields])
 
-    def __map_where(map_where_fields, conditional):
+    def __map_where(self, map_where_fields, conditional):
         mapper = ["{0}=\"{1}\"".format(x["Name"], x["Value"]) for x in map_where_fields]
 
         return " {0} ".format(conditional).join(mapper)
         
-    def select_fields(map_field, table):
+    def select_fields(self, map_field, table):
         select_command = "SELECT {0} FROM {1};"
 
         str_fields = self.__map_select_fields(map_field)
@@ -91,13 +91,13 @@ class DatabaseManager():
             logging.critical("Unexpected error ocurred while executing SELECT command: {}".format(err))
             return False
 
-    def select_fields_conditional(map_field, map_where, table):
+    def select_fields_conditional(self, map_field, map_where, table):
         return
     
-    def select_fields_related_conditional(map_field, map_where, map_relations, tables):
+    def select_fields_related_conditional(self, map_field, map_where, map_relations, tables):
         return
 
-    def update_fields(map_field, map_where, table, condition="AND"):
+    def update_fields(self, map_field, map_where, table, condition="AND"):
         update_command = "UPDATE {0} SET {1} WHERE {2};"
 
         map_fields_update = self.__map_update_fields(map_field)

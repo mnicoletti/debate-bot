@@ -34,6 +34,7 @@ Instalamos python3 y las dependencias que sean necesarias
 > pip3 install discord
 > pip3 install mariadb
 > pip3 install pycurl
+> pip3 install pytz
 ```
 
 # Configuracion

@@ -25,7 +25,8 @@ intents.members = True
 client = commands.Bot(command_prefix=commands.when_mentioned_or("apex!"),
             activity=discord.Game(name="Apex Legends"),
             status=discord.Status('dnd'),
-            intents=intents)
+            intents=intents,
+            help_command=None)
 discord_guild = DiscordBotJsonData(str(file_data.ConfigFiles.DISCORD_CONFIG))
 perfect_status = PerfectData(str(file_data.ConfigFiles.DB_CONFIG))
 
@@ -34,6 +35,13 @@ file_management.create_dir(discord_guild.log_path())
 log_file_path="{0}/{1}.log".format(discord_guild.log_path(), discord_guild.log_file())
 logging.basicConfig(level=helper.set_logging_level("INFO"), filename=log_file_path, filemode='a', format='%(asctime)s:%(name)s:%(levelname)s:%(message)s')
 logging.getLogger().setLevel(logging.INFO)
+
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        logging.info("Loading cog: {}".format(filename[:-3]))
+        client.load_extension(f'cogs.{filename[:-3]}')
+    else:
+        logging.info("Unable to load cog: {}".format(filename[:-3]))
 
 @client.event
 async def on_ready():

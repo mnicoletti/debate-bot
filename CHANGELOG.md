@@ -10,6 +10,9 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
 * Funciones de consulta a un "mapa" de campos, sin condicionales (SELECT).
 * Nueva clase ApexMaps, dedicada a obtener información sobre los mapas de Apex y su rotación.
 
+### Changed
+* Se arma servicios por "cogs" para formar comandos.
+
 ## [1.3.1] - 2020-03-20
 ### Fixed
 * Agregados intents para solucionar aplicación de nuevas reglas de Discord API.

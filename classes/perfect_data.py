@@ -24,11 +24,11 @@ class PerfectData:
             self.__id = dict_result[0]["id"]
             self.__nickname = dict_result[0]["nickname"]
             self.__full_id = "{0}#{1}".format(self.__nickname, self.__id)
-            self.__offline_date = datetime.strptime(dict_result[0]["offline_date"], "%x %X")
+            self.__offline_date = dict_result[0]["offline_date"], "%x %X"
         except KeyError as err:
             log.critical("Response key not present: {}".format(err))
         except Exception as err:
-            log.critical("Unexpected error ocurred: {}".format(err))
+            log.critical("Unexpected error ocurred while renewing values: {}".format(err))
 
     def __renew_offline_date(self):
         str_fields = ["offline_date"]
@@ -40,7 +40,7 @@ class PerfectData:
         except KeyError as err:
             log.critical("Response key not present: {}".format(err))
         except Exception as err:
-            log.critical("Unexpected error ocurred: {}".format(err))
+            log.critical("Unexpected error ocurred while renewing offline dates: {}".format(err))
 
     def id(self):
         return self.__id

@@ -2,34 +2,22 @@ import logging
 import json
 import pycurl
 from classes import database_mgmt
+from enums import url_data
 from io import BytesIO
 import dateutil.parser
 
 log = logging.getLogger(__name__)
 
 class ApexMaps():
-    def __init__(self, json_config_file):
+    def __init__(self):
         try:
-            self.__apex_db = database_mgmt.DatabaseManager(json_config_file)
+            self.__map_url = url_data.URLData.MAP_JSON_URL
         except Exception as err:
             sys.exit(1)
         
-        self.__map_url = ""
-        self.__map_uri_path = ""
 
-    def __renew_url_values(self):
-        str_fields = ["map_url","map_uri_path"]
-        str_table = "apex_data_config"
-
-        try:
-            dict_result = self.__apex_db.select_fields(str_fields, str_table)
-            self.__map_url, self.__map_uri_path = dict_result[0]["map_url"], dict_result[0]["map_uri_path"]
-        except Exception as err:
-            logging.critical("Unexpected error ocurred: {}".format(err))
-
-
-    def obtain_map_rotation(next_amount=1):
-        map_url = "{0}{1}".format(self.__map_url, __self.__map_uri_path.format(next_amount))
+    def obtain_map_rotation(self, next_amount=1):
+        map_url = "{0}{1}".format(self.__map_url, next_amount)
         map_headers = ['Content-Type: application/json', 'User-Agent: Debate Discord Bot']
         map_io = BytesIO()
         map_next = []
@@ -37,9 +25,9 @@ class ApexMaps():
 
         try:
             map_curl = pycurl.Curl()
-            map_curl.set_opt(map_curl.URL, map_url)
-            map_curl.set_opt(HTTPHEADER, map_headers)
-            map_curl.set_opt(map_curl.WRITEDATA, map_io)
+            map_curl.setopt(map_curl.URL, map_url)
+            map_curl.setopt(map_curl.HTTPHEADER, map_headers)
+            map_curl.setopt(map_curl.WRITEDATA, map_io)
             map_curl.perform()
             map_curl.close()
 
