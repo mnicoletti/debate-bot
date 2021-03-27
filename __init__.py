@@ -36,7 +36,7 @@ log_file_path="{0}/{1}.log".format(discord_guild.log_path(), discord_guild.log_f
 logging.basicConfig(level=helper.set_logging_level("INFO"), filename=log_file_path, filemode='a', format='%(asctime)s:%(name)s:%(levelname)s:%(message)s')
 logging.getLogger().setLevel(logging.INFO)
 
-for filename in os.listdir('{0}/cogs'.format(discord_guild["install_path"])):
+for filename in os.listdir('{0}/cogs'.format(discord_guild.install_path())):
     if filename.endswith('.py'):
         logging.info("Loading cog: {}".format(filename[:-3]))
         client.load_extension(f'cogs.{filename[:-3]}')
