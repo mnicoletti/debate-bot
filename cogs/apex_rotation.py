@@ -22,7 +22,7 @@ class ApexRotations(commands.Cog):
         (current_map,list_next_maps) = self.__apex_maps.obtain_map_rotation()
         if current_map['map'] == "World's Edge":
             img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_WORLDSEDGE, map_img_seq)
-        elif current_map['map'] == "KingsCanyon":
+        elif current_map['map'] == "Kings Canyon":
             img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_KINGSCANYON, map_img_seq)
         else:
             img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_OLYMPUS, map_img_seq)

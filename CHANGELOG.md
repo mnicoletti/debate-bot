@@ -3,6 +3,10 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+* Valor install_path en discord.json para obtener el path de instalación de base.
+
 ## [2.0.1] - 2020-03-27
 ### Fixed
 * Instancia en la cual no se actualizaban datos en una tabla de MariaDB, por falta de autocommit=True.

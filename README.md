@@ -47,6 +47,7 @@ Crear directorio etc/ con archivo **discord.json**. Debe contener los valores de
     "guild": "nombre de server",
     "log_path": "/var/log/debate-bot",
     "log_file": "debate-bot",
+    "install_path": "/opt/debate-bot"
 }
 ```
 
