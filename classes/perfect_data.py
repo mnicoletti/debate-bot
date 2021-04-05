@@ -94,10 +94,8 @@ class PerfectData:
     def retrieve_perfect_message(self, msg_type) -> [str]:
         str_fields = ["string_frases.mensaje"]
         str_tables = ["string_frases", "funciones_frases"]
-        lst_where_fields = [
-            dict(Name="string_frases.id_funcion", Value="funciones_frases.id"), 
-            dict(Name="funciones_frases.funcion", Value=msg_type)
-            ]
+        lst_where_fields = [dict(Name="funciones_frases.funcion", Value=msg_type)]
+        lst_relation_fields = [dict(Name="string_frases.id_funcion", Value="funciones_frases.id")]
         try:
             cmd_output = self.__perfect_db.select_fields(str_fields, str_tables, lst_where_fields)
 

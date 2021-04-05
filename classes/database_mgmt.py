@@ -68,8 +68,16 @@ class DatabaseManager():
         mapper = ["{0}=\"{1}\"".format(x["Name"], x["Value"]) for x in map_where_fields]
 
         return " {0} ".format(conditional).join(mapper)
+
+    def __map_where_relations(self, map_where_fields, map_relations_fields, conditional):
+        mapper = ["{0}={1}".format(x["Name"], x["Value"]) for x in map_relations_fields]
+        where_fields = ["{0}=\"{1}\"".format(x["Name"], x["Value"]) for x in map_where_fields]
+
+        mapper.extend(where_fields)
+
+        return " {0} ".format(conditional).join(mapper)
         
-    def select_fields(self, map_field, table, map_where=None, condition="AND"):
+    def select_fields(self, map_field, table, map_where=None, map_relations=None, condition="AND"):
         select_command = "SELECT {0} FROM {1}"
 
         str_fields = self.__map_select_fields(map_field)
@@ -78,7 +86,11 @@ class DatabaseManager():
             table = ", ".join(table)
 
         if map_where != None:
-            where_fields = self.__map_where(map_where, condition)
+            if map_relations != None:
+                where_fields = self.__map_where_relations(map_where, map_relations)
+            else:
+                where_fields = self.__map_where(map_where, condition)
+            
             full_command = "{0} WHERE {1}".format(select_command.format(str_fields, table), where_fields)
         else:
             full_command = select_command.format(str_fields, table)
