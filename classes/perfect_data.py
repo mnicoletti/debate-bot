@@ -36,7 +36,7 @@ class PerfectData:
 
         try:
             dict_result = self.__perfect_db.select_fields(str_fields, str_table)
-            self.__offline_date = datetime.strptime(dict_result[0]["offline_date"], "%x %X")
+            self.__offline_date = dict_result[0]["offline_date"]
         except KeyError as err:
             log.critical("Response key not present: {}".format(err))
         except Exception as err:
