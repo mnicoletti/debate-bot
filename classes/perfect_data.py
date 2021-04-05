@@ -61,7 +61,7 @@ class PerfectData:
         lst_where_fields = [dict(Name="id", Value=self.__id)]
 
         try:
-            self.__perfect_db.update_fields(lst_update_fields, lst_where_fields, table)
+            self.__perfect_db.update_fields(lst_update_fields, lst_where_fields, str_table)
             self.__renew_offline_date()
         except KeyError as err:
             log.critical("JSON file key not present: {}".format(err))
