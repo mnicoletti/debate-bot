@@ -87,7 +87,7 @@ class DatabaseManager():
 
         if map_where != None:
             if map_relations != None:
-                where_fields = self.__map_where_relations(map_where, map_relations)
+                where_fields = self.__map_where_relations(map_where, map_relations, condition)
             else:
                 where_fields = self.__map_where(map_where, condition)
             
