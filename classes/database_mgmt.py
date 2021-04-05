@@ -69,17 +69,26 @@ class DatabaseManager():
 
         return " {0} ".format(conditional).join(mapper)
         
-    def select_fields(self, map_field, table):
-        select_command = "SELECT {0} FROM {1};"
+    def select_fields(self, map_field, table, map_where=None, condition="AND"):
+        select_command = "SELECT {0} FROM {1}"
 
         str_fields = self.__map_select_fields(map_field)
+        
+        if not isinstance(table, str):
+            table = ", ".join(table)
+
+        if map_where != None:
+            where_fields = self.__map_where(map_where, condition)
+            full_command = "{0} WHERE {1}".format(select_command.format(str_fields, table), where_fields)
+        else:
+            full_command = select_command.format(str_fields, table)
 
         lst_response = []
 
         try:
             self.__connect()
             self.__cursor = self.__db_conn.cursor(dictionary=True)
-            self.__cursor.execute(select_command.format(str_fields, table))
+            self.__cursor.execute(full_command)
             
             lst_response = [ x for x in self.__cursor ]
             
@@ -92,9 +101,6 @@ class DatabaseManager():
             logging.critical("Unexpected error ocurred while executing SELECT command: {}".format(err))
             return False
 
-    def select_fields_conditional(self, map_field, map_where, table):
-        return
-    
     def select_fields_related_conditional(self, map_field, map_where, map_relations, tables):
         return
 

@@ -90,3 +90,21 @@ class PerfectData:
             return "%d segundos" % seconds
         else:
             return "online"
+
+    def retrieve_perfect_message(self, msg_type) -> [str]:
+        str_fields = ["string_frases.mensaje"]
+        str_tables = ["string_frases", "funciones_frases"]
+        lst_where_fields = [
+            dict(Name="string_frases.id_funcion", Value="funciones_frases.id"), 
+            dict(Name="funciones_frases.funcion", Value=msg_type)
+            ]
+        try:
+            cmd_output = self.__perfect_db.select_fields(str_fields, str_tables, lst_where_fields)
+
+            return [ x['mensaje'] for x in cmd_output ]
+        except KeyError as err:
+            log.critical("No key present at message retrieval: {}".format(err))
+        except Exception as err:
+            log.critical("Unexpected error occurred while retrieving Perfect messages: {}".format(err))
+        
+        return False
