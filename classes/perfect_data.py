@@ -97,7 +97,7 @@ class PerfectData:
         lst_where_fields = [dict(Name="funciones_frases.funcion", Value=msg_type)]
         lst_relation_fields = [dict(Name="string_frases.id_funcion", Value="funciones_frases.id")]
         try:
-            cmd_output = self.__perfect_db.select_fields(str_fields, str_tables, lst_where_fields)
+            cmd_output = self.__perfect_db.select_fields(str_fields, str_tables, lst_where_fields, lst_relation_fields)
 
             return [ x['mensaje'] for x in cmd_output ]
         except KeyError as err:
