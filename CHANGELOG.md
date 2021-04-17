@@ -6,6 +6,14 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
 ## [Unreleased]
 ### Added
 * Valor install_path en discord.json para obtener el path de instalación de base.
+* PerfectData.retrieve_perfect_message consume las frases relacionadas a Perfect a una base de datos.
+
+### Changed
+* Todas las frases del bot relacionadas a Perfect, antes hardcodeadas, viven ahora en la base de datos.
+* Se modifica la función channel_messages.remember_perfect para consultar las frases de DB.
+
+### Fixed
+* Se modifica el campo de update de fecha de offline de Perfect. Era str, ahora es solo un datetime.
 
 ## [2.0.1] - 2020-03-27
 ### Fixed

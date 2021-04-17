@@ -36,7 +36,7 @@ class PerfectData:
 
         try:
             dict_result = self.__perfect_db.select_fields(str_fields, str_table)
-            self.__offline_date = datetime.strptime(dict_result[0]["offline_date"], "%x %X")
+            self.__offline_date = dict_result[0]["offline_date"]
         except KeyError as err:
             log.critical("Response key not present: {}".format(err))
         except Exception as err:
@@ -55,13 +55,13 @@ class PerfectData:
         return self.__offline_date
     
     def update_offline_date(self):
-        date_now = datetime.now().strftime("%x %X")
+        date_now = datetime.now()
         str_table = "perfect_offline"
         lst_update_fields = [dict(Name="offline_date",Value=date_now)]
         lst_where_fields = [dict(Name="id", Value=self.__id)]
 
         try:
-            self.__perfect_db.update_fields(lst_update_fields, lst_where_fields, table)
+            self.__perfect_db.update_fields(lst_update_fields, lst_where_fields, str_table)
             self.__renew_offline_date()
         except KeyError as err:
             log.critical("JSON file key not present: {}".format(err))
@@ -90,3 +90,19 @@ class PerfectData:
             return "%d segundos" % seconds
         else:
             return "online"
+
+    def retrieve_perfect_message(self, msg_type) -> [str]:
+        str_fields = ["string_frases.mensaje"]
+        str_tables = ["string_frases", "funciones_frases"]
+        lst_where_fields = [dict(Name="funciones_frases.funcion", Value=msg_type)]
+        lst_relation_fields = [dict(Name="string_frases.id_funcion", Value="funciones_frases.id")]
+        try:
+            cmd_output = self.__perfect_db.select_fields(str_fields, str_tables, lst_where_fields, lst_relation_fields)
+
+            return [ x['mensaje'] for x in cmd_output ]
+        except KeyError as err:
+            log.critical("No key present at message retrieval: {}".format(err))
+        except Exception as err:
+            log.critical("Unexpected error occurred while retrieving Perfect messages: {}".format(err))
+        
+        return False
