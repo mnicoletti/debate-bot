@@ -29,26 +29,26 @@ class ApexMessages(commands.Cog):
         icon_url="http://debatebot.freecluster.eu/apexdata/GameIcons/apexpredator.jpeg")
 
         embed.add_field(name="**Comandos Activos**", 
-        value="""**`<apex!help | apex!h>`**: Esta pantalla de ayuda.\n\n
-        **`<apex!rotation | apex!maps>`**: Muestra el mapa actual en juego, su duración y el próximo mapa en rotación.\n\n
+        value="""**`<apex!help | apex!h>`**: Esta pantalla de ayuda.\n
+        **`<apex!rotation | apex!maps>`**: Muestra el mapa actual en juego, su duración y el próximo mapa en rotación.\n
         """,
         inline=False)
         embed.add_field(name="**Mapas (No implementado)**", 
-        value="""**`<apex!rotation | apex!maps> pois`**: Muestra un listado de PoIs para el mapa en curso.\n\n
+        value="""**`<apex!rotation | apex!maps> pois`**: Muestra un listado de PoIs para el mapa en curso.\n
         **`<apex!rotation | apex!maps> <cantidad>`**: Muestra el mapa en curso y una <cantidad> de rotaciones futuras.\n
         """,
         inline=False)
         embed.add_field(name="**Perfiles**", 
-        value="""**`<apex!perfil | apex!profile>`**: Muestra el perfil registrado de usuario.\n\n
-        **`<apex!perfil | apex!profile> save [Origin ID]`**: Crea un vinculo entre tu cuenta de Discord y tu perfil de Apex.\n\n
-        **`<apex!perfil | apex!profile> display`**: Muestra el perfil vinculado a esta cuenta de Discord.\n\n
-        **`<apex!perfil | apex!profile> ranked`**: Muestra el rango actual y puntos acumulados para el split en juego.\n\n
-        **`<apex!perfil | apex!profile> lastmatch`**: Resultados de la última partida.\n\n
+        value="""**`<apex!perfil | apex!profile>`**: Muestra el perfil registrado de usuario.\n
+        **`<apex!perfil | apex!profile> save [Origin ID]`**: Crea un vinculo entre tu cuenta de Discord y tu perfil de Apex.\n
+        **`<apex!perfil | apex!profile> display`**: Muestra el perfil vinculado a esta cuenta de Discord.\n
+        **`<apex!perfil | apex!profile> ranked`**: Muestra el rango actual y puntos acumulados para el split en juego.\n
+        **`<apex!perfil | apex!profile> lastmatch`**: Resultados de la última partida.\n
         """,
         inline=False)
         embed.add_field(name="**Challenges**", 
-        value="""**`apex!challenge poi`**: Elige un PoI al azar para el mapa en curso.\n\n
-        **`apex!challenge legend`**: Selecciona una leyenda al azar para la próxima partida.\n\n
+        value="""**`apex!challenge poi`**: Elige un PoI al azar para el mapa en curso.\n
+        **`apex!challenge legend`**: Selecciona una leyenda al azar para la próxima partida.\n
         **`apex!challenge team`**: Armar una comp aleatoria para la próxima partida.\n
         """,
         inline=False)
