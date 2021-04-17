@@ -32,7 +32,7 @@ class ApexRotations(commands.Cog):
         embed.set_footer(text="Debate Bot | La cagaste", 
         icon_url=url_data.URLData.PREDATOR_LOGO)
 
-        if error_type == "bad_type"
+        if error_type == "bad_type":
             embed.add_field(name="Error de opciones",value="Tenes que ingresar una opción correcta.")
 
         return embed
@@ -48,9 +48,9 @@ class ApexRotations(commands.Cog):
             elif len(args) == 1:
                 if args[0] in ["pois"]:
                     msg_mode = "apex_pois"
-                elif int(args[0]) <= 5
+                elif int(args[0]) <= 5:
                     map_rotation = len(args[0])
-                elif int(args[0]) > 5
+                elif int(args[0]) > 5:
                     map_rotation = 5
             else:
                     msg_mode = "error"
