@@ -1,8 +1,10 @@
 # Debate Bot
 Bot "oficial" de la comunidad de Debate Videojuegos. Único bot con recuerdos reales de la existencia de Perfect.  
-Se detalla la instalación, configuración y funciones de 
+Acá podés enterarte de las funcionalidades activas del Bot, así como la manera de clonar este código, dependencias y modo de instalación en tu propio entorno.  
+El bot está hecho completamente ad honorem, porque si nos sentamos a esperar que Perfect se ponga a stremear y generar plata antes de armar un bot, no vamos a codear ni una línea.
 
 # Tabla de Contenidos
+* [Changelog](#changelog)  
 * [Dependencias](#dependencias)
 * [Instalación](#instalacion)
 * [Configuración](#configuracion)  
@@ -11,7 +13,9 @@ Se detalla la instalación, configuración y funciones de
 * [Uso](#uso)
   * [Linea de comandos](#linea-de-comandos)  
   * [SystemD](#systemd)  
-* [Changelog](#changelog)  
+
+# Changelog
+Por ahora, [revisá la página de releases](https://github.com/mnicoletti/debate-bot/releases) para ver los cambios en cada versión.
 
 # Dependencias
   * [discord.py](https://discordpy.readthedocs.io/en/latest/)
@@ -98,5 +102,3 @@ Restart=on-abort
 WantedBy=multi-user.target
 ```
 
-# Changelog
-Por ahora, [revisá la página de releases](https://github.com/mnicoletti/debate-bot/releases) para ver los cambios en cada versión.
