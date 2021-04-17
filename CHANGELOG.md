@@ -12,6 +12,9 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
 * Todas las frases del bot relacionadas a Perfect, antes hardcodeadas, viven ahora en la base de datos.
 * Se modifica la función channel_messages.remember_perfect para consultar las frases de DB.
 
+### Fixed
+* Se modifica el campo de update de fecha de offline de Perfect. Era str, ahora es solo un datetime.
+
 ## [2.0.1] - 2020-03-27
 ### Fixed
 * Instancia en la cual no se actualizaban datos en una tabla de MariaDB, por falta de autocommit=True.

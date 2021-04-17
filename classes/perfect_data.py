@@ -55,7 +55,7 @@ class PerfectData:
         return self.__offline_date
     
     def update_offline_date(self):
-        date_now = datetime.now().strftime("%x %X")
+        date_now = datetime.now()
         str_table = "perfect_offline"
         lst_update_fields = [dict(Name="offline_date",Value=date_now)]
         lst_where_fields = [dict(Name="id", Value=self.__id)]
