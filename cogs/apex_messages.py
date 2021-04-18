@@ -22,13 +22,12 @@ class ApexMessages(commands.Cog):
         embed.set_footer(text="Hecho gratis hasta que Perfect se ponga a streamear y nos llenemos de plata.", 
         icon_url=url_data.URLData.PREDATOR_LOGO)
 
-        embed.add_field(name="**Comandos Activos**", 
-        value="""**`<apex!help | apex!h>`**: Esta pantalla de ayuda.\n
-        **`<apex!rotation | apex!maps>`**: Muestra el mapa actual en juego, su duración y el próximo mapa en rotación.\n
-        """,
+        embed.add_field(name="**Ayuda**", 
+        value="""**`<apex!help | apex!h>`**: Esta pantalla de ayuda.""",
         inline=False)
-        embed.add_field(name="**Mapas (No implementado)**", 
-        value="""**`<apex!rotation | apex!maps> pois`**: Muestra un listado de PoIs para el mapa en curso.\n
+        embed.add_field(name="**Mapas**", 
+        value="""**`<apex!rotation | apex!maps>`**: Muestra el mapa actual en juego, su duración y el próximo mapa en rotación.\n
+        **`<apex!rotation | apex!maps> pois`**: Muestra un listado de PoIs para el mapa en curso.\n
         **`<apex!rotation | apex!maps> <cantidad>`**: Muestra el mapa en curso y una <cantidad> de rotaciones futuras, con un máximo de 5.\n
         """,
         inline=False)
