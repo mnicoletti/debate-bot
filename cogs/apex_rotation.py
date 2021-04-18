@@ -45,7 +45,7 @@ class ApexRotations(commands.Cog):
         ## Cantidad de argumentos pasados
         try:
             if len(args) == 0:
-                pass
+                msg_mode = "apex_map"
             elif len(args) == 1:
                 if args[0] in ["pois"]:
                     msg_mode = "apex_pois"
