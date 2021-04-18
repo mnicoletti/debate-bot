@@ -50,7 +50,7 @@ class ApexRotations(commands.Cog):
                 if args[0] in ["pois"]:
                     msg_mode = "apex_pois"
                 elif int(args[0]) <= 5:
-                    map_rotation = len(args[0])
+                    map_rotation = int(args[0])
                 elif int(args[0]) > 5:
                     map_rotation = 5
             else:
