@@ -41,11 +41,10 @@ class ApexRotations(commands.Cog):
     async def maps(self, ctx, *args):
         msg_mode = "apex_map"
         error_type = "default"
+        map_rotation = 1
         ## Cantidad de argumentos pasados
         try:
-            if len(args) == 0:
-                map_rotation = 1
-            elif len(args) == 1:
+            if len(args) == 1:
                 if args[0] in ["pois"]:
                     msg_mode = "apex_pois"
                 elif int(args[0]) <= 5:
@@ -60,7 +59,7 @@ class ApexRotations(commands.Cog):
 
         if msg_mode == "error":
             embed = self.__error_message(error_type=error_type)
-            await ctx.send(embed)
+            await ctx.send(embed=embed)
             return
 
         map_img_seq = random.choice(["01","02","03"])
@@ -83,21 +82,21 @@ class ApexRotations(commands.Cog):
         next_map_date_arg = datetime.strftime(list_next_maps[0]['start'] - timedelta(hours=3), "%X")
 
         if msg_mode == "apex_map":
-            embed.add_field(name="Próximos mapas", value="El próximo mapa a jugar es *{0}*, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps[0]['map'], next_map_date_arg, list_next_maps[0]['duration']), inline=False)
+            embed.add_field(name="Próximos mapas", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps[0]['map'], next_map_date_arg, list_next_maps[0]['duration']), inline=False)
 
             if len(list_next_maps) > 1:
                 list_next_maps.remove(list_next_maps[0])
                 for next_map in list_next_maps:
                     next_map_date_arg = datetime.strftime(next_map['start'] - timedelta(hours=3), "%X")
-                    text_next_maps = """**{0}**\n**Duración**: {1}\n**Comienza**: {2}""".format(next_map['map'], next_map['duration'], next_map_date_arg)
+                    text_next_maps = """**Duración**: {0}\n**Comienza**: {1}""".format(next_map['duration'], next_map_date_arg)
+                    embed.add_field(name=next_map['map'], value=text_next_maps, inline=False)
 
-                embed.add_field(name="Siguientes rotaciones", value=text_next_maps, inline=False)
         elif msg_mode == "apex_pois":
             lst_pois = self.__apex_maps.obtain_pois_from_current(current_map['map'])
             if lst_pois is None:
                 logging.critical("Imposible obtener pois para {}".format(current_map['map']))
-            str_pois = "\n* ".join(lst_pois)
-            embed.add_field(name="Points of Interest", value="* {0}".format(str_pois), inline=False)
+            str_pois = "\n- ".join(lst_pois)
+            embed.add_field(name="Points of Interest", value="- {0}".format(str_pois), inline=False)
         
         await ctx.send(embed=embed)
 
