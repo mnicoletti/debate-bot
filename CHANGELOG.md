@@ -3,13 +3,28 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.1] - 2020-03-27
+## [2.1.0] - 2021-04-17
+### Added
+* Valor install_path en discord.json para obtener el path de instalación de base.
+* PerfectData.retrieve_perfect_message consume las frases relacionadas a Perfect a una base de datos.
+* Comando para obtener POIs del mapa actual.
+* Listado de rotaciones hasta 5.
+
+### Changed
+* Todas las frases del bot relacionadas a Perfect, antes hardcodeadas, viven ahora en la base de datos.
+* Se modifica la función channel_messages.remember_perfect para consultar las frases de DB.
+* Cambio de diseño en tooltip de ayuda.
+
+### Fixed
+* Se modifica el campo de update de fecha de offline de Perfect. Era str, ahora es solo un datetime.
+
+## [2.0.1] - 2021-03-27
 ### Fixed
 * Instancia en la cual no se actualizaban datos en una tabla de MariaDB, por falta de autocommit=True.
 * El offline_date de Perfect se obtenía como un str y se calculaba contra un datetime, fue solucionado.
 * Se solucionó un problema de actualización de datos en bases de datos por estar en un formato incorrecto.
 
-## [2.0.0] - 2020-03-27
+## [2.0.0] - 2021-03-27
 ### Added
 * Nueva clase "DatabaseManager" dedicada a hacer de interface entre el bot y una base de datos MariaDB.
 * Creado esquema de base de datos y scripts .sql de instalación.
@@ -19,7 +34,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
 ### Changed
 * Se arma servicios por "cogs" para formar comandos.
 
-## [1.3.1] - 2020-03-20
+## [1.3.1] - 2021-03-20
 ### Fixed
 * Agregados intents para solucionar aplicación de nuevas reglas de Discord API.
 
