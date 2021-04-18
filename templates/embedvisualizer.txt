@@ -1,0 +1,30 @@
+{
+  "embed": {
+    "title": "Titulo del Mensaje",
+    "description": "Esto es una descripcion, depende del mensaje",
+    "url": "https://github.com/mnicoletti/debate-bot",
+    "color": 7105012,
+    "footer": {
+      "icon_url": "http://debatebot.freecluster.eu/apexdata/GameIcons/apexpredator.jpeg",
+      "text": "Debate Bot"
+    },
+    "thumbnail": {
+      "url": "http://debatebot.freecluster.eu/apexdata/GameIcons/LikeFence.png"
+    },
+    "image": {
+      "url": "http://debatebot.freecluster.eu/apexdata/Maps/Season08/KingsCanyon01.png"
+    },
+    "author": {
+      "name": "Debate Bot",
+      "url": "https://github.com/mnicoletti/debate-bot",
+      "icon_url": "http://debatebot.freecluster.eu/apexdata/BotIcons/TotoLogo.png"
+    },
+    "fields": [
+      {
+        "name": "El campos",
+        "value": "Usa todos los de estos que necesites para generar texto.",
+        "inline": false
+      }
+    ]
+  }
+}
