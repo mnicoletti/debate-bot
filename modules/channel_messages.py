@@ -59,6 +59,6 @@ def this_is_boca(discord_client: discord.Client, message):
     if message.author == discord_client.user:
         return
         
-    if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE) or re.search(r'(^|\s|@)(boquit|bokit)+[A]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE):
+    if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE) or re.search(r'(^|\s|@)(b+o+qui+t|b+o+ki+t)[A]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE):
         log.info("Boquita mention: {}".format(message.author.name))
         return output_message
