@@ -81,10 +81,10 @@ class ApexRotations(commands.Cog):
 
         embed.add_field(name="Mapa Actual", value="Se está jugando **{0}** por los próximos **{1} minutos**.".format(current_map['map'], current_map['remaining']), inline=False)
 
-        next_map_date_arg = datetime.strftime(list_next_maps[0]['start'] - timedelta(hours=3), "%X")
-
         if msg_mode == "apex_map":
-            embed.add_field(name="Próximos mapas", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps[0]['map'], next_map_date_arg, list_next_maps[0]['duration']), inline=False)
+            if len(list_next_maps) > 0:
+                next_map_date_arg = datetime.strftime(list_next_maps[0]['start'] - timedelta(hours=3), "%X")    
+                embed.add_field(name="Próximos mapas", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps[0]['map'], next_map_date_arg, list_next_maps[0]['duration']), inline=False)
 
             if len(list_next_maps) > 1:
                 list_next_maps.remove(list_next_maps[0])
