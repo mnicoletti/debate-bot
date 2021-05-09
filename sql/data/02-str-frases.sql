@@ -21,6 +21,7 @@ INSERT INTO string_frases (id_funcion, mensaje) VALUES ((SELECT id FROM funcione
 INSERT INTO string_frases (id_funcion, mensaje) VALUES ((SELECT id FROM funciones_frases WHERE funcion = "perfect_offline"), "Yo creo que ya fue. Desde la última vez que tuvimos noticias de {0} ya pasaron {1}.");
 INSERT INTO string_frases (id_funcion, mensaje) VALUES ((SELECT id FROM funciones_frases WHERE funcion = "perfect_offline"), "A {0} le cayó una amiga hace alrededor de {1}.");
 INSERT INTO string_frases (id_funcion, mensaje) VALUES ((SELECT id FROM funciones_frases WHERE funcion = "perfect_offline"), "No lo jodas a {0} que lleva {1} sacando la comida del horno. No sea cosa que se le queme.");
+INSERT INTO string_frases (id_funcion, mensaje) VALUES ((SELECT id FROM funciones_frases WHERE funcion = "perfect_offline"), "1 2 3 4 5 6 7 {0} no está más. 8 9 10 hace {1}... PELOTUDOOOOO");
 
 -- perfect_activity
 INSERT INTO string_frases (id_funcion, mensaje) VALUES ((SELECT id FROM funciones_frases WHERE funcion = "perfect_activity"), "Ahí lo tenés a {0}, con {1}.");

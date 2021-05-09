@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 class ApexMaps():
     def __init__(self):
         try:
-            self.__map_url = url_data.URLData.MAP_JSON_URL
+            self.__map_url = apis_data.APISData.MAP_JSON_URL
             self.__apex_db = database_mgmt.DatabaseManager(str(file_data.ConfigFiles.DB_CONFIG))
         except Exception as err:
             sys.exit(1)
