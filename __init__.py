@@ -83,10 +83,4 @@ async def on_message(message):
 async def on_member_update(before, after):
     perfect_update.save_offline(client, perfect_status, before, after)
 
-#### Commands
-########
-@client.command(name="")
-async def apex_help(ctx):
-    await ctx.message.delete()
-
 client.run(discord_guild.token())

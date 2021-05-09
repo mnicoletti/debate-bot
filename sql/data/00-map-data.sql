@@ -50,6 +50,7 @@ INSERT INTO apex_pois (id_maps,name,enabled) VALUES ((SELECT id FROM apex_maps W
 INSERT INTO apex_pois (id_maps,name,enabled) VALUES ((SELECT id FROM apex_maps WHERE name = @map_name),"Solar Array", 1);
 INSERT INTO apex_pois (id_maps,name,enabled) VALUES ((SELECT id FROM apex_maps WHERE name = @map_name),"Orbital Cannon", 1);
 INSERT INTO apex_pois (id_maps,name,enabled) VALUES ((SELECT id FROM apex_maps WHERE name = @map_name),"Fight Night", 1);
+INSERT INTO apex_pois (id_maps,name,enabled) VALUES ((SELECT id FROM apex_maps WHERE name = @map_name),"The Icarus", 1);
 
 -- World's Edge
 SET @map_name = "World's Edge";

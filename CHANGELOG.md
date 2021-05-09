@@ -3,6 +3,16 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+* Nuevo enum para ordenar datos de APIs de consulta para Apex.
+* Se agrega una nueva frase para Perfect Offline.
+* Se agrega un nuevo POI de Olympus a la base de datos.
+
+### Changed
+* Se mueve la configuración de la URL de consulta de rotación de mapas a un nuevo enum.
+* Se agrega nueva temporada a las imágenes.
+
 ## [2.1.2] - 2021-05-04
 ### Changed
 * Si no existe un próximo mapa, no manda mensaje.

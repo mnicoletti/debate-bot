@@ -2,9 +2,8 @@ from enum import Enum
 import random
 
 class URLData(Enum):
-    SEASON = "08"
+    SEASON = "09"
     BASE_URL = "http://debatebot.freecluster.eu/apexdata"
-    MAP_JSON_URL = "https://fn.alphaleagues.com/v1/apex/map/?next="
     IMG_MAP_BASE = "{0}/Maps/Season{1}".format(BASE_URL, SEASON)
     PREDATOR_LOGO = "{0}/GameIcons/apexpredator.jpeg".format(BASE_URL)
     TOTO_LOGO = "{0}/BotIcons/TotoLogo.png".format(BASE_URL)
