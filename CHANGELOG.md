@@ -8,6 +8,8 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
 * Nuevo enum para ordenar datos de APIs de consulta para Apex.
 * Se agrega una nueva frase para Perfect Offline.
 * Se agrega un nuevo POI de Olympus a la base de datos.
+* Nueva clase ApexStats.
+* Enum con configuraciones de APIs.
 
 ### Changed
 * Se mueve la configuración de la URL de consulta de rotación de mapas a un nuevo enum.
