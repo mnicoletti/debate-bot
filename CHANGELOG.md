@@ -3,6 +3,10 @@ Todos los cambios relacionados al bot de la comunidad de Debate Videojuegos en D
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.2] - 2021-05-04
+### Changed
+* Si no existe un próximo mapa, no manda mensaje.
+
 ## [2.1.1] - 2021-04-21
 ### Fixed
 * Arregla las menciones de bokita y boquita.
