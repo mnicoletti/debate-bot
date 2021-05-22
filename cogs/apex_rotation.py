@@ -40,8 +40,8 @@ class ApexRotations(commands.Cog):
     @commands.command(aliases=["rotation"])
     async def maps(self, ctx, *args):
         msg_mode = "apex_map"
+        map_type = "battle_royale"
         error_type = "default"
-        map_rotation = 1
         ## Cantidad de argumentos pasados
         try:
             if len(args) == 0:
@@ -49,10 +49,8 @@ class ApexRotations(commands.Cog):
             elif len(args) == 1:
                 if args[0] in ["pois"]:
                     msg_mode = "apex_pois"
-                elif int(args[0]) <= 5:
-                    map_rotation = int(args[0])
-                elif int(args[0]) > 5:
-                    map_rotation = 5
+                elif args[0] in ["arenas"]:
+                    map_type = "arenas"
             else:
                     msg_mode = "error"
                     error_type = "bad_type"
@@ -82,16 +80,8 @@ class ApexRotations(commands.Cog):
         embed.add_field(name="Mapa Actual", value="Se está jugando **{0}** por los próximos **{1} minutos**.".format(current_map['map'], current_map['remaining']), inline=False)
 
         if msg_mode == "apex_map":
-            if len(list_next_maps) > 0:
-                next_map_date_arg = datetime.strftime(list_next_maps[0]['start'] - timedelta(hours=3), "%X")    
-                embed.add_field(name="Próximos mapas", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps[0]['map'], next_map_date_arg, list_next_maps[0]['duration']), inline=False)
-
-            if len(list_next_maps) > 1:
-                list_next_maps.remove(list_next_maps[0])
-                for next_map in list_next_maps:
-                    next_map_date_arg = datetime.strftime(next_map['start'] - timedelta(hours=3), "%X")
-                    text_next_maps = """**Duración**: {0}\n**Comienza**: {1}""".format(next_map['duration'], next_map_date_arg)
-                    embed.add_field(name=next_map['map'], value=text_next_maps, inline=False)
+            next_map_date_arg = datetime.strftime(list_next_maps[0]['start'] - timedelta(hours=3), "%X")    
+            embed.add_field(name="Próximo mapa", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps[0]['map'], next_map_date_arg, list_next_maps[0]['duration']), inline=False)
 
         elif msg_mode == "apex_pois":
             lst_pois = self.__apex_maps.obtain_pois_from_current(current_map['map'])
