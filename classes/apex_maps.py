@@ -1,11 +1,9 @@
 import logging
-import json
 import requests
 import sys
 from classes import database_mgmt, apis_mgmt
 from enums import file_data, apis_data
-from io import BytesIO
-import dateutil.parser
+from datetime import datetime
 
 log = logging.getLogger(__name__)
 
@@ -23,13 +21,9 @@ class ApexMaps():
     def obtain_map_rotation(self, type="battle_royale"):
         map_endpoint = self.__map_endpoint.format(self.__api_mgmt.apexstatus_token())
         map_url = "{0}/{1}".format(self.__map_url, map_endpoint)
-        map_next = []
-        map_current = {}
 
         try:
-            map_response = requests.get(map_url).json()
-
-            json_response = json.loads(map_response)
+            json_response = requests.get(map_url).json()
 
             map_current = dict(
                 map=json_response[type]["current"]["map"], 
@@ -39,12 +33,12 @@ class ApexMaps():
             map_next = dict(
                         map=json_response[type]["next"]["map"],
                         duration=json_response[type]["next"]["DurationInMinutes"],
-                        start=dateutil.parser.isoparse(json_response[type]["current"]["end"])
+                        start=datetime.fromtimestamp(json_response[type]["current"]["end"])
                     )
             
             return (map_current, map_next)
         except Exception as err:
-            logging.critical("Unexpected error occurred: {}".format(err))
+            logging.critical("Unexpected error occurred while obtaining rotation: {}".format(err))
             return None
 
     def obtain_pois_from_current(self, current_map):
