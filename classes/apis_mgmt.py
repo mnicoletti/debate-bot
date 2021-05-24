@@ -9,7 +9,7 @@ class APISManager():
             with open(json_config_file) as config_file:
                 config = json.load(config_file)
         except IOError as er:
-            log.critical("I/O Error({0}): {1}".format(er.errno, er.strerror))
+            log.critical("I/O Error({0}): {1} {2}".format(er.errno, er.strerror, json_config_file))
         except FileNotFoundError as er:
             log.critical("File not found: {}".format(er))
         except Exception as er:

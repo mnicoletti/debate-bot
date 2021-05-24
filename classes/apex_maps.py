@@ -1,9 +1,9 @@
 import logging
 import json
-import pycurl
+import requests
 import sys
 from classes import database_mgmt, apis_mgmt
-from enums import url_data, file_data, apis_data
+from enums import file_data, apis_data
 from io import BytesIO
 import dateutil.parser
 
@@ -24,19 +24,11 @@ class ApexMaps():
         map_endpoint = self.__map_endpoint.format(self.__api_mgmt.apexstatus_token())
         map_url = "{0}/{1}".format(self.__map_url, map_endpoint)
         map_headers = ['Content-Type: application/json', 'User-Agent: Debate Discord Bot']
-        map_io = BytesIO()
         map_next = []
         map_current = {}
 
         try:
-            map_curl = pycurl.Curl()
-            map_curl.setopt(map_curl.URL, map_url)
-            map_curl.setopt(map_curl.HTTPHEADER, map_headers)
-            map_curl.setopt(map_curl.WRITEDATA, map_io)
-            map_curl.perform()
-            map_curl.close()
-
-            map_response = map_io.getvalue()
+            map_response = requests.get(map_url, map_headers)
 
             json_response = json.loads(map_response)
 
