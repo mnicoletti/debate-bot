@@ -47,9 +47,9 @@ class ApexRotations(commands.Cog):
             else:
                 img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_OLYMPUS, map_img_seq)
         elif type == "arenas":
-            if current_map == "Party Crasher":
+            if current_map == "Party crasher":
                 img_map_file = "{0}/PartyCrasher01.jpg".format(url_data.URLData.IMG_ARENAS)
-            elif current_map == "Phase Runner":
+            elif current_map == "Phase runner":
                 img_map_file = "{0}/PhaseRunner01.jpg".format(url_data.URLData.IMG_ARENAS)
             else:
                 img_map_file = "{0}/RotatingMaps01.jpg".format(url_data.URLData.IMG_ARENAS)
@@ -92,8 +92,8 @@ class ApexRotations(commands.Cog):
         embed.add_field(name="Mapa Actual", value="Se está jugando **{0}** por los próximos **{1} minutos**.".format(current_map['map'], current_map['remaining']), inline=False)
 
         if msg_mode == "apex_map":
-            next_map_date_arg = datetime.strftime(list_next_maps[0]['start'] - timedelta(hours=3), "%X")    
-            embed.add_field(name="Próximo mapa", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps[0]['map'], next_map_date_arg, list_next_maps[0]['duration']), inline=False)
+            next_map_date_arg = datetime.strftime(list_next_maps['start'] - timedelta(hours=3), "%X")    
+            embed.add_field(name="Próximo mapa", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps['map'], next_map_date_arg, list_next_maps['duration']), inline=False)
         elif msg_mode == "apex_pois" and map_type == "battle_royale":
             lst_pois = self.__apex_maps.obtain_pois_from_current(current_map['map'])
             if lst_pois is None:
