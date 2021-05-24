@@ -1,59 +1,44 @@
 import logging
-import json
-import pycurl
+import requests
 import sys
-from classes import database_mgmt
-from enums import url_data, file_data, apis_data
-from io import BytesIO
-import dateutil.parser
+from classes import database_mgmt, apis_mgmt
+from enums import file_data, apis_data
+from datetime import datetime
 
 log = logging.getLogger(__name__)
 
 class ApexMaps():
     def __init__(self):
         try:
-            self.__map_url = apis_data.APISData.MAP_JSON_URL
+            self.__api_mgmt = apis_mgmt.APISManager(str(file_data.ConfigFiles.API_CONFIG))
+            self.__map_url = str(apis_data.APISData.APEXSTATUS_URL)
+            self.__map_endpoint = str(apis_data.APISData.MAP_JSON_URI)
             self.__apex_db = database_mgmt.DatabaseManager(str(file_data.ConfigFiles.DB_CONFIG))
         except Exception as err:
             sys.exit(1)
         
 
-    def obtain_map_rotation(self, next_amount=1):
-        map_url = "{0}{1}".format(self.__map_url, next_amount)
-        map_headers = ['Content-Type: application/json', 'User-Agent: Debate Discord Bot']
-        map_io = BytesIO()
-        map_next = []
-        map_current = {}
+    def obtain_map_rotation(self, type="battle_royale"):
+        map_endpoint = self.__map_endpoint.format(self.__api_mgmt.apexstatus_token())
+        map_url = "{0}/{1}".format(self.__map_url, map_endpoint)
 
         try:
-            map_curl = pycurl.Curl()
-            map_curl.setopt(map_curl.URL, map_url)
-            map_curl.setopt(map_curl.HTTPHEADER, map_headers)
-            map_curl.setopt(map_curl.WRITEDATA, map_io)
-            map_curl.perform()
-            map_curl.close()
-
-            map_response = map_io.getvalue()
-
-            json_response = json.loads(map_response)
+            json_response = requests.get(map_url).json()
 
             map_current = dict(
-                map=json_response["map"], 
-                remaining=int(json_response["times"]["remaining"]["minutes"])
+                map=json_response[type]["current"]["map"], 
+                remaining=int(json_response[type]["current"]["remainingMins"])
                 )
 
-            for next_one in json_response["next"]:
-                map_next.append(
-                    dict(
-                        map=next_one["map"],
-                        duration=next_one["duration"],
-                        start=dateutil.parser.isoparse(next_one["start"])
+            map_next = dict(
+                        map=json_response[type]["next"]["map"],
+                        duration=json_response[type]["next"]["DurationInMinutes"],
+                        start=datetime.fromtimestamp(json_response[type]["current"]["end"])
                     )
-                )
             
             return (map_current, map_next)
         except Exception as err:
-            logging.critical("Unexpected error ocurred: {}".format(err))
+            logging.critical("Unexpected error occurred while obtaining rotation: {}".format(err))
             return None
 
     def obtain_pois_from_current(self, current_map):
@@ -69,6 +54,6 @@ class ApexMaps():
         except KeyError as err:
             log.critical("No key present at Apex Map POIS retrieval: {}".format(err))
         except Exception as err:
-            log.critical("Unexpected error ocurred when retrieving Apex Map POIS for map {0}: {1}".format(current_map, err))
+            log.critical("Unexpected error occurred when retrieving Apex Map POIS for map {0}: {1}".format(current_map, err))
             
             return None

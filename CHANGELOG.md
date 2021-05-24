@@ -10,10 +10,12 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
 * Se agrega un nuevo POI de Olympus a la base de datos.
 * Nueva clase ApexStats.
 * Enum con configuraciones de APIs.
+* Consulta de mapas por Arenas.
 
 ### Changed
 * Se mueve la configuración de la URL de consulta de rotación de mapas a un nuevo enum.
 * Se agrega nueva temporada a las imágenes.
+* Los assets del bot se movieron a un nuevo hosting.
 
 ## [2.1.2] - 2021-05-04
 ### Changed
