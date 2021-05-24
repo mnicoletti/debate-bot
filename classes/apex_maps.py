@@ -23,12 +23,11 @@ class ApexMaps():
     def obtain_map_rotation(self, type="battle_royale"):
         map_endpoint = self.__map_endpoint.format(self.__api_mgmt.apexstatus_token())
         map_url = "{0}/{1}".format(self.__map_url, map_endpoint)
-        map_headers = ['Content-Type: application/json', 'User-Agent: Debate Discord Bot']
         map_next = []
         map_current = {}
 
         try:
-            map_response = requests.get(map_url, map_headers)
+            map_response = requests.get(map_url).json()
 
             json_response = json.loads(map_response)
 
@@ -45,7 +44,7 @@ class ApexMaps():
             
             return (map_current, map_next)
         except Exception as err:
-            logging.critical("Unexpected error ocurred: {}".format(err))
+            logging.critical("Unexpected error occurred: {}".format(err))
             return None
 
     def obtain_pois_from_current(self, current_map):
@@ -61,6 +60,6 @@ class ApexMaps():
         except KeyError as err:
             log.critical("No key present at Apex Map POIS retrieval: {}".format(err))
         except Exception as err:
-            log.critical("Unexpected error ocurred when retrieving Apex Map POIS for map {0}: {1}".format(current_map, err))
+            log.critical("Unexpected error occurred when retrieving Apex Map POIS for map {0}: {1}".format(current_map, err))
             
             return None
