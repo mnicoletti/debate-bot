@@ -5,19 +5,19 @@
     "url": "https://github.com/mnicoletti/debate-bot",
     "color": 7105012,
     "footer": {
-      "icon_url": "http://debatebot.freecluster.eu/apexdata/GameIcons/apexpredator.jpeg",
+      "icon_url": "https://max.nicoletti.co/debatebot/GameIcons/apexpredator.jpeg",
       "text": "Debate Bot"
     },
     "thumbnail": {
-      "url": "http://debatebot.freecluster.eu/apexdata/GameIcons/LikeFence.png"
+      "url": "https://max.nicoletti.co/debatebot/GameIcons/LikeFence.png"
     },
     "image": {
-      "url": "http://debatebot.freecluster.eu/apexdata/Maps/Season08/KingsCanyon01.png"
+      "url": "https://max.nicoletti.co/debatebot/Maps/Season08/KingsCanyon01.png"
     },
     "author": {
       "name": "Debate Bot",
       "url": "https://github.com/mnicoletti/debate-bot",
-      "icon_url": "http://debatebot.freecluster.eu/apexdata/BotIcons/TotoLogo.png"
+      "icon_url": "https://max.nicoletti.co/debatebot/BotIcons/TotoLogo.png"
     },
     "fields": [
       {
