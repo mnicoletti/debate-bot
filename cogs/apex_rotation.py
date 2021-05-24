@@ -37,6 +37,25 @@ class ApexRotations(commands.Cog):
 
         return embed
 
+    def __select_map_image(self, current_map, type="battle_royale"):
+        if type == "battle_royale":
+            map_img_seq = random.choice(["01","02","03"])
+            if current_map == "World's Edge":
+                img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_WORLDSEDGE, map_img_seq)
+            elif current_map == "Kings Canyon":
+                img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_KINGSCANYON, map_img_seq)
+            else:
+                img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_OLYMPUS, map_img_seq)
+        elif type == "arenas":
+            if current_map == "Party Crasher":
+                img_map_file = "{0}/PartyCrasher01.jpg".format(url_data.URLData.IMG_ARENAS)
+            elif current_map == "Phase Runner":
+                img_map_file = "{0}/PhaseRunner01.jpg".format(url_data.URLData.IMG_ARENAS)
+            else:
+                img_map_file = "{0}/RotatingMaps01.jpg".format(url_data.URLData.IMG_ARENAS)
+
+        return img_map_file
+
     @commands.command(aliases=["rotation"])
     async def maps(self, ctx, *args):
         msg_mode = "apex_map"
@@ -62,15 +81,8 @@ class ApexRotations(commands.Cog):
             await ctx.send(embed=embed)
             return
 
-        map_img_seq = random.choice(["01","02","03"])
-        (current_map,list_next_maps) = self.__apex_maps.obtain_map_rotation(next_amount=map_rotation)
-        if current_map['map'] == "World's Edge":
-            img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_WORLDSEDGE, map_img_seq)
-        elif current_map['map'] == "Kings Canyon":
-            img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_KINGSCANYON, map_img_seq)
-        else:
-            img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_OLYMPUS, map_img_seq)
-
+        (current_map,list_next_maps) = self.__apex_maps.obtain_map_rotation(type=map_type)
+        img_map_file = self.__select_map_image(current_map['map'], type=map_type)
         embed = discord.Embed(title="Rotación de mapas", colour=discord.Colour(self.color))
 
         embed.set_image(url=img_map_file)
@@ -82,8 +94,7 @@ class ApexRotations(commands.Cog):
         if msg_mode == "apex_map":
             next_map_date_arg = datetime.strftime(list_next_maps[0]['start'] - timedelta(hours=3), "%X")    
             embed.add_field(name="Próximo mapa", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps[0]['map'], next_map_date_arg, list_next_maps[0]['duration']), inline=False)
-
-        elif msg_mode == "apex_pois":
+        elif msg_mode == "apex_pois" and map_type == "battle_royale":
             lst_pois = self.__apex_maps.obtain_pois_from_current(current_map['map'])
             if lst_pois is None:
                 logging.critical("Imposible obtener pois para {}".format(current_map['map']))
