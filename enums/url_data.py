@@ -1,5 +1,4 @@
 from enum import Enum
-import random
 
 class URLData(Enum):
     SEASON = "09"
