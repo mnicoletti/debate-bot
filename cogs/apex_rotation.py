@@ -1,5 +1,4 @@
 import discord
-import re
 import random
 from classes import apex_maps
 from enums import file_data, url_data

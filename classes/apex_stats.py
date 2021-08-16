@@ -3,7 +3,7 @@ import json
 import pycurl
 import requests
 from classes import database_mgmt, apis_mgmt
-from enums import url_data, file_data
+from enums import file_data
 from io import BytesIO
 import dateutil.parser
 
@@ -16,7 +16,7 @@ class ApexStats():
             self.__trackergg_url = str(apis_data.APISData.TRACKERGG_URL)
             self.__status_uri = str(apis_data.APISData.PLAYER_STATUS_URI)
             self.__ranked_uri = str(apis_data.APISData.PLAYER_RANK_URI)
-            self.__apex_db = database_mgmt.DatabaseManager(str(file_data.ConfigFiles.DB_CONFIG))
+            #self.__apex_db = database_mgmt.DatabaseManager(str(file_data.ConfigFiles.DB_CONFIG))
             self.__api_mgmt = apis_mgmt.APISManager(str(file_data.ConfigFiles.API_CONFIG))
         except Exception as err:
             sys.exit(1)
@@ -50,7 +50,7 @@ class ApexStats():
         player_status_headers = ["Accept=application/json", "Accept-Encoding=gzip", 'User-Agent: Debate Discord Bot']
 
         try:
-            json_response = requests.get(player_status_url)
+            json_response = requests.get(player_status_url, player_status_headers)
 
             return json_response
         except Exception as err:
