@@ -1,0 +1,1 @@
+INSERT INTO string_frases (id_funcion, mensaje) VALUES ((SELECT id FROM funciones_frases WHERE funcion = "perfect_offline"), "1 2 3 4 5 6 7 {0} no está más. 8 9 10 hace {1}... PELOTUDOOOOO");

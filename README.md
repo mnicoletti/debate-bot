@@ -67,6 +67,14 @@ Crear archivo **db_config.json** con la siguiente estructura.
 }
 ```
 
+## Configuración de APIs
+```json
+{
+    "trackergg_token": "tokentoken",
+    "apexstatus_token": "tokentoken"
+}
+```
+
 ## Persistir datos de Perfect
 Crear archivo **perfect.json** con la siguiente estructura.
 
