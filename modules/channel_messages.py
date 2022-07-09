@@ -34,7 +34,7 @@ def remember_perfect(discord_client: discord.Client, perfect_status: perfect_dat
         elif str(perfect_guild_member.status) == "offline":
             offline_time = perfect_status.calculate_last_offline()
             lst_offline_msg = [ x.format(perfect_guild_member.mention, offline_time) for x in perfect_status.retrieve_perfect_message("perfect_offline") ]
-            output_msg += "\n{}".format(random.choice(lst_offline_msg))
+            output_msg += f"\n{random.choice(lst_offline_msg)}"
     except AttributeError as er:
         log.critical("Unexpected type error: {}".format(er))
     except Exception as er:
@@ -44,7 +44,7 @@ def remember_perfect(discord_client: discord.Client, perfect_status: perfect_dat
         return
 
     if re.search(r'(^|\s|@)(perfect)(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE):
-        log.info("Perfect mention: {}".format(message.author.name))
+        log.info(f"Perfect mention: {message.author.name}")
         return output_msg
 
 def this_is_boca(discord_client: discord.Client, message):
@@ -53,9 +53,9 @@ def this_is_boca(discord_client: discord.Client, message):
     random_boke = random.choice([boquita,boquiten])
 
     lst_boca_msg = [
-        "El mas grande, papá, %s!" % random_boke,
+        f"El mas grande, papá, {random_boke}!",
         random_boke,
-        "ESTO ES %s" % boquita
+        f"ESTO ES {boquita}"
     ]
 
     output_message = random.choice(lst_boca_msg)
@@ -63,6 +63,6 @@ def this_is_boca(discord_client: discord.Client, message):
     if message.author == discord_client.user:
         return
         
-    if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|\!|\"|$)', message.content, re.IGNORECASE) or re.search(r'(^|\s|@)(b+o+qui+t|b+o+ki+t)[A]+(\s|\n|\?|\.|\,|\!\|\"|$)', message.content, re.IGNORECASE):
-        log.info("Boquita mention: {}".format(message.author.name))
+    if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|\!|\"|$)', message.content, re.IGNORECASE) or re.search(r'(^|\s|@)(b+o+qui+t|b+o+ki+t)[A]+(\s|\n|\?|\.|\,|\!|\"|$)', message.content, re.IGNORECASE):
+        log.info(f"Boquita mention: {message.author.name}")
         return output_message
