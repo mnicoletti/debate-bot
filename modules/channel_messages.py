@@ -55,7 +55,8 @@ def this_is_boca(discord_client: discord.Client, message):
     lst_boca_msg = [
         f"El mas grande, papá, {random_boke}!",
         random_boke,
-        f"ESTO ES {boquita}"
+        f"ESTO ES {boquita}",
+        "Todo muy lindo con boquita pero, ¿¡CUANDO ARRANCA EL MUNDIAL!?"
     ]
 
     output_message = random.choice(lst_boca_msg)
