@@ -7,6 +7,10 @@ import logging
 
 log = logging.getLogger(__name__)
 
+def _match_perfect_mention(message):
+    
+    return False
+
 def remember_perfect(discord_client: discord.Client, perfect_status: perfect_data.PerfectData, message):
     for guild in discord_client.guilds:
         perfect_guild_member = guild.get_member(int(perfect_status.id()))
@@ -59,6 +63,6 @@ def this_is_boca(discord_client: discord.Client, message):
     if message.author == discord_client.user:
         return
         
-    if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE) or re.search(r'(^|\s|@)(b+o+qui+t|b+o+ki+t)[A]+(\s|\n|\?|\.|\,|$)', message.content, re.IGNORECASE):
+    if re.search(r'(^|\s|@)B+O+[KC]+[AE]+(\s|\n|\?|\.|\,|\!|\"|$)', message.content, re.IGNORECASE) or re.search(r'(^|\s|@)(b+o+qui+t|b+o+ki+t)[A]+(\s|\n|\?|\.|\,|\!\|\"|$)', message.content, re.IGNORECASE):
         log.info("Boquita mention: {}".format(message.author.name))
         return output_message
