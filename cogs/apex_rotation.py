@@ -91,7 +91,7 @@ class ApexRotations(commands.Cog):
         embed.add_field(name="Mapa Actual", value="Se está jugando **{0}** por los próximos **{1} minutos**.".format(current_map['map'], current_map['remaining']), inline=False)
 
         if msg_mode == "apex_map":
-            next_map_date_arg = datetime.strftime(list_next_maps['start'] - timedelta(hours=3), "%X")    
+            next_map_date_arg = datetime.strftime(list_next_maps['start'] - timedelta(hours=4), "%X")    
             embed.add_field(name="Próximo mapa", value=f"El próximo mapa a jugar es **{list_next_maps['map']}**, comienza a las *{next_map_date_arg}* y tendrá una duración de *{list_next_maps['duration']}* minutos.", inline=False)
         elif msg_mode == "apex_pois" and map_type == "battle_royale":
             lst_pois = self.__apex_maps.obtain_pois_from_current(current_map['map'])
