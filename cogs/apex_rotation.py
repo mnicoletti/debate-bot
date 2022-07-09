@@ -40,18 +40,18 @@ class ApexRotations(commands.Cog):
         if type == "battle_royale":
             map_img_seq = random.choice(["01","02","03"])
             if current_map == "World's Edge":
-                img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_WORLDSEDGE, map_img_seq)
+                img_map_file = f"{url_data.URLData.IMG_WORLDSEDGE}{map_img_seq}.png"
             elif current_map == "Kings Canyon":
-                img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_KINGSCANYON, map_img_seq)
+                img_map_file = f"{url_data.URLData.IMG_KINGSCANYON}{map_img_seq}.png"
             else:
-                img_map_file = "{0}{1}.png".format(url_data.URLData.IMG_OLYMPUS, map_img_seq)
+                img_map_file = f"{url_data.URLData.IMG_OLYMPUS}{map_img_seq}.png"
         elif type == "arenas":
             if current_map == "Party crasher":
-                img_map_file = "{0}/PartyCrasher01.jpg".format(url_data.URLData.IMG_ARENAS)
+                img_map_file = f"{url_data.URLData.IMG_ARENAS}/PartyCrasher01.jpg"
             elif current_map == "Phase runner":
-                img_map_file = "{0}/PhaseRunner01.jpg".format(url_data.URLData.IMG_ARENAS)
+                img_map_file = f"{url_data.URLData.IMG_ARENAS}/PhaseRunner01.jpg"
             else:
-                img_map_file = "{0}/RotatingMaps01.jpg".format(url_data.URLData.IMG_ARENAS)
+                img_map_file = f"{url_data.URLData.IMG_ARENAS}/RotatingMaps01.jpg"
 
         return img_map_file
 
@@ -91,14 +91,14 @@ class ApexRotations(commands.Cog):
         embed.add_field(name="Mapa Actual", value="Se está jugando **{0}** por los próximos **{1} minutos**.".format(current_map['map'], current_map['remaining']), inline=False)
 
         if msg_mode == "apex_map":
-            next_map_date_arg = datetime.strftime(list_next_maps['start'] - timedelta(hours=3), "%X")    
-            embed.add_field(name="Próximo mapa", value="El próximo mapa a jugar es **{0}**, comienza a las *{1}* y tendrá una duración de *{2}* minutos.".format(list_next_maps['map'], next_map_date_arg, list_next_maps['duration']), inline=False)
+            next_map_date_arg = datetime.strftime(list_next_maps['start'] - timedelta(hours=4), "%X")    
+            embed.add_field(name="Próximo mapa", value=f"El próximo mapa a jugar es **{list_next_maps['map']}**, comienza a las *{next_map_date_arg}* y tendrá una duración de *{list_next_maps['duration']}* minutos.", inline=False)
         elif msg_mode == "apex_pois" and map_type == "battle_royale":
             lst_pois = self.__apex_maps.obtain_pois_from_current(current_map['map'])
             if lst_pois is None:
-                logging.critical("Imposible obtener pois para {}".format(current_map['map']))
+                logging.critical(f"Imposible obtener pois para {current_map['map']}")
             str_pois = "\n- ".join(lst_pois)
-            embed.add_field(name="Points of Interest", value="- {0}".format(str_pois), inline=False)
+            embed.add_field(name="Points of Interest", value=f"- {str_pois}", inline=False)
         
         await ctx.send(embed=embed)
 
