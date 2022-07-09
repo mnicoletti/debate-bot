@@ -69,7 +69,7 @@ class ApexRotations(commands.Cog):
                     msg_mode = "apex_pois"
                 elif args[0] in ["arenas"]:
                     map_type = "arenas"
-            else:
+                else:
                     msg_mode = "error"
                     error_type = "bad_type"
         except ValueError as err:
