@@ -52,11 +52,17 @@ def this_is_boca(discord_client: discord.Client, message):
     boquiten = 'BOKE'.replace('O', 'O'*random.randrange(1,15),1).replace('E','E'*random.randrange(1,15),1)
     random_boke = random.choice([boquita,boquiten])
 
+    #lst_boca_msg = [
+        #f"El mas grande, papá, {random_boke}!",
+        #random_boke,
+        #f"ESTO ES {boquita}",
+        #"Todo muy lindo con boquita pero, ¿¡CUANDO ARRANCA EL MUNDIAL!?"
+    #]
     lst_boca_msg = [
-        f"El mas grande, papá, {random_boke}!",
+        "Para dramas ya está tu hermana. Ahora dejame dedicarme al mundial.",
+        "¿Podés parar con boca? ¿CUANDO JUEGA LA SELECCIÓN?",
         random_boke,
-        f"ESTO ES {boquita}",
-        "Todo muy lindo con boquita pero, ¿¡CUANDO ARRANCA EL MUNDIAL!?"
+        "Yo ahora quiero descansar. Comer asado, pasarla bien."
     ]
 
     output_message = random.choice(lst_boca_msg)
